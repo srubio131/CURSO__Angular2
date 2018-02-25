@@ -1,0 +1,41 @@
+<ion-header>
+
+  <ion-navbar color="primary">
+    <ion-title>Lista de Terminados</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+<ion-content padding>
+
+  <mensaje-vacio *ngIf="( _listaDeseos.listas | mostrarPendientes ).length == 0"></mensaje-vacio>
+
+  <ion-card *ngFor="let lista of _listaDeseos.listas | mostrarPendientes">
+
+    <ion-item color="dark" (click)="verDetalle(lista, lista.id)">
+      <h2 class="text-white">{{ lista.nombre }}</h2>
+      <ion-note item-right>
+        {{ lista.items.length }} item(s)
+      </ion-note>
+    </ion-item>
+
+    <ion-card-content>
+      <ion-list>
+
+        <ion-item (click)="verDetalle(lista, lista.id)"
+                  *ngFor="let item of lista.items | slice:0:2">
+          <ion-icon *ngIf="!item.estaCompletado" ios="ios-square-outline" md="md-square-outline"></ion-icon>
+          <ion-icon *ngIf="item.estaCompletado" ios="ios-checkbox-outline" md="md-checkbox-outline"></ion-icon>
+          {{ item.nombre }}
+        </ion-item>
+
+        <ion-item class="text-center" *ngIf="lista.items.length > 2">
+          <ion-icon color="primary" ios="ios-arrow-dropdown" md="md-arrow-dropdown"></ion-icon>
+        </ion-item>
+
+      </ion-list>
+    </ion-card-content>
+
+  </ion-card>
+
+</ion-content>

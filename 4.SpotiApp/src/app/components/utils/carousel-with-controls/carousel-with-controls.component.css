@@ -1,0 +1,14 @@
+.carousel-item{
+  width: 100%;
+  height: 500px;
+  -webkit-background-size: cover;/*Para evitar distrorsion de las imagenes*/
+  -moz-background-size: cover;/*Para evitar distrorsion de las imagenes*/
+  -o-background-size: cover;/*Para evitar distrorsion de las imagenes*/
+  background-size: cover;/*Para evitar distrorsion de las imagenes*/
+}
+
+@media (max-width: 600px) { /*Cuando la resolucion sea menor a 600px, el heigh del item carusel disminuira*/
+  .carousel-item {
+    height: 280px;
+  }
+}

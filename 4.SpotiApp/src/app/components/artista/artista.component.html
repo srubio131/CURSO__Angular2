@@ -1,0 +1,53 @@
+<div *ngIf="artista" class="container top-30">
+
+  <div class="row">
+
+    <div class="col-md-3 text-center">
+      <img [src]="artista.images | sinfoto" [alt]="artista.name" height="250" width="250" class="img-thumbnail img-circle"/>
+      <br>
+    </div>
+
+    <div class="col-md-9">
+      <div class="jumbotron">
+        <h3 class="display-3">{{ artista.name }}</h3>
+        <br>
+        <p class="lead">
+          <a class="btn btn-primary btn-md"
+             [href]="artista.external_urls?.spotify"
+             target="_blank">Ir a Spotify></a>
+          <a class="btn btn-danger btn-md"
+             [routerLink]="['/search']">Regresar></a>
+        </p>
+      </div>
+    </div>
+
+  </div>
+
+  <h1 class="display-5">Top Tracks</h1>
+  <hr>
+
+  <div class="row">
+    <div class="col-md-12">
+      <ul class="list list-group">
+        <li class="list-group-item"
+            *ngFor="let track of pistas; let i = index">
+          <span class="bg-success text-white">{{ i + 1 }}</span>
+          <img [src]="track.album?.images | sinfoto" [alt]="track.name" height="100" width="100" class="img-circle"/>
+          <span class="badge badge-default badge-pill">{{ track.popularity }}</span>
+          <span class="bg-success text-white"> {{ track.name }}</span>
+
+          <audio controls="true">
+            <source [src]="track.preview_url">
+            Tu navegador es muy viejuno
+          </audio>
+
+          <iframe [src]=" track.uri | domseguro:'https://open.spotify.com/embed?uri=' " width="300" height="80" frameborder="0" allowtransparency="true"></iframe>
+
+        </li>
+      </ul>
+    </div>
+  </div>
+
+</div>
+
+<br><br><br><br><br><br><br><br><br><br><br>
